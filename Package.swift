@@ -7,6 +7,9 @@ let package = Package(
     platforms: [
         .macOS(.v12)
     ],
+    products: [
+        .library(name: "ISBN", targets: ["ISBN"])
+    ],
     dependencies: [
         .package(url: "https://github.com/yahoojapan/SwiftyXMLParser", from: "5.5.0")
     ],
