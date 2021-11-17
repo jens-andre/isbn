@@ -13,7 +13,7 @@ struct ISBN
 ```swift
 init?(Int)
 ```
-Create a ISBN with a given GTIN represantation; returns `nil` if the ISBN is not valid
+Create a ISBN with a given GTIN representation; returns `nil` if the ISBN is not valid
 
 ```swift
 init?(String)
@@ -67,7 +67,7 @@ The registrant number element of the ISBN
 ```swift
 static func isValid(Int) -> Bool
 ```
-Validates a given GTIN represantation of a ISBN
+Validates a given GTIN representation of a ISBN
 
 ```swift
 static func isValid(String) -> Bool

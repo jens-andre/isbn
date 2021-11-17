@@ -56,7 +56,7 @@ public struct ISBN {
         gtin = isbn.toInt()
     }
     
-    /// Create a ISBN with a given GTIN represantation
+    /// Create a ISBN with a given GTIN representation
     ///
     /// Returns `nil` if the ISBN is not valid
     public init?(_ gtin: Int) {
@@ -78,7 +78,7 @@ extension ISBN {
         return false
     }
     
-    /// Validates a given GTIN represantation of a ISBN
+    /// Validates a given GTIN representation of a ISBN
     public static func isValid(_ gtin: Int) -> Bool {
         isValid(String(gtin))
     }
