@@ -1,5 +1,5 @@
 // International ISBN Agency
-// Tue, 16 Nov 2021 11:36:02 GMT
+// Wed, 17 Nov 2021 11:04:00 GMT
 
 extension ISBN {
     static let registrationGroups: [RegistrationGroup] = [
