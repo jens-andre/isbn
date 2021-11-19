@@ -38,7 +38,7 @@ public struct ISBN {
         
         if isbn.count == 10 {
             isbn = String("978\(isbn)".dropLast())
-            isbn = "\(isbn)\(10 - (isbn.calculateISBNChecksum() % 10))"
+            isbn = "\(isbn)\((10 - (isbn.calculateISBNChecksum() % 10) % 10))"
         }
         
         guard let registrationGroup = Self.registrationGroups.group(for: isbn),
@@ -149,12 +149,12 @@ extension ISBN {
         
         func elements(for isbn: String) -> Elements? {
             let digits = isbn.dropFirst("\(prefix)\(group)".count)
-            let rule = rules.first(where: { rule in
+            let rule = rules.first { rule in
                 guard let registrant = Int(digits.dropLast(digits.count - rule.length)) else {
                     return false
                 }
                 return rule.range.contains(registrant)
-            })
+            }
             
             guard let registrantLength = rule?.length,
                   let registrant = Int(digits.dropLast(digits.count - registrantLength)),
@@ -208,6 +208,6 @@ private extension String {
 
 private extension Array where Element == ISBN.RegistrationGroup {
     func group(for isbn: String) -> ISBN.RegistrationGroup? {
-        first(where: { isbn.hasPrefix("\($0.prefix)\($0.group)") })
+        first { isbn.hasPrefix("\($0.prefix)\($0.group)") }
     }
 }
