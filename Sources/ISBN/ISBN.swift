@@ -80,6 +80,8 @@ extension ISBN {
     
     /// Returns a string representation of a ISBN with hyphens
     public static func hyphenated(_ isbn: String) -> String? {
+        guard isValid(isbn) else { return nil }
+        
         let isbn = isbn.cleanedISBN()
         
         guard let registrationGroup = registrationGroups.group(for: isbn),
