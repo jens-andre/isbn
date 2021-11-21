@@ -34,12 +34,7 @@ public struct ISBN {
     public init?(_ isbn: String) {
         guard Self.isValid(isbn) else { return nil }
         
-        var isbn = isbn.filter(\.isISBNSave)
-        
-        if isbn.count == 10 {
-            isbn = String("978\(isbn)".dropLast())
-            isbn = "\(isbn)\((10 - (isbn.calculateISBNChecksum() % 10) % 10))"
-        }
+        let isbn = isbn.cleanedISBN()
         
         guard let registrationGroup = Self.registrationGroups.group(for: isbn),
               let elements = registrationGroup.elements(for: isbn) else {
@@ -81,6 +76,23 @@ extension ISBN {
     /// Validates a given GTIN representation of a ISBN
     public static func isValid(_ gtin: Int) -> Bool {
         isValid(String(gtin))
+    }
+    
+    /// Returns a string representation of a ISBN with hyphens
+    public static func hyphenated(_ isbn: String) -> String? {
+        let isbn = isbn.cleanedISBN()
+        
+        guard let registrationGroup = registrationGroups.group(for: isbn),
+              let elements = registrationGroup.elements(for: isbn) else {
+            return nil
+        }
+        
+        return elements.joined()
+    }
+    
+    /// Returns a string representation of a ISBN with hyphens from a given GTIN representation
+    public static func hyphenated(_ gtin: Int) -> String? {
+        hyphenated(String(gtin))
     }
 }
 
@@ -199,6 +211,17 @@ private extension String {
             .enumerated()
             .map({ ($0.offset + 1) * $0.element })
             .reduce(0, +)
+    }
+    
+    func cleanedISBN() -> String {
+        var isbn = self.filter(\.isISBNSave)
+        
+        if isbn.count == 10 {
+            isbn = String("978\(isbn)".dropLast())
+            isbn = "\(isbn)\((10 - (isbn.calculateISBNChecksum() % 10) % 10))"
+        }
+        
+        return isbn
     }
     
     func toInt() -> Int {

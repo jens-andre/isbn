@@ -9,6 +9,10 @@ final class ISBNTests: XCTestCase {
         XCTAssertFalse(ISBN.isValid("1-4088-5589-0"))
     }
     
+    func testHypenation() throws {
+        XCTAssertEqual(ISBN.hyphenated(9781408855898), "978-1-4088-5589-8")
+    }
+    
     func testElements() throws {
         guard let isbn = ISBN("978-1-4088-5589-8") else {
             XCTFail("Not a valid ISBN")
