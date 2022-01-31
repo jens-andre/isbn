@@ -11,19 +11,19 @@ public struct ISBN {
     public let isbnString: String
     
     /// The prefix element of the ISBN; either 978 or 979
-    public let prefix: Int
+    public let prefix: String
     
     /// The group number element of the ISBN
-    public let group: Int
+    public let group: String
     
     /// The registrant number element of the ISBN
-    public let registrant: Int
+    public let registrant: String
     
     /// The publication number element of the ISBN
-    public let publication: Int
+    public let publication: String
     
     /// The check digit element of the ISBN
-    public let checkDigit: Int
+    public let checkDigit: String
     
     /// The Global Trade Item Number
     public let gtin: Int
@@ -137,11 +137,11 @@ extension ISBN: Equatable {
 
 extension ISBN {
     struct Elements {
-        let prefix: Int
-        let group: Int
-        let registrant: Int
-        let publication: Int
-        let checkDigit: Int
+        let prefix: String
+        let group: String
+        let registrant: String
+        let publication: String
+        let checkDigit: String
         
         func joined() -> String {
             let mirror = Mirror(reflecting: self)
@@ -170,19 +170,13 @@ extension ISBN {
                 return rule.range.contains(registrant)
             }
             
-            guard let registrantLength = rule?.length,
-                  let registrant = Int(digits.dropLast(digits.count - registrantLength)),
-                  let publication = Int(digits.dropLast().dropFirst(registrantLength)),
-                  let checkDigit = Int(isbn.dropFirst(isbn.count - 1)) else {
-                return nil
-            }
-            
+            guard let registrantLength = rule?.length else { return nil }
             return .init(
-                prefix: prefix,
-                group: group,
-                registrant: registrant,
-                publication: publication,
-                checkDigit: checkDigit
+                prefix: String(prefix),
+                group: String(group),
+                registrant: String(digits.dropLast(digits.count - registrantLength)),
+                publication: String(digits.dropLast().dropFirst(registrantLength)),
+                checkDigit: String(isbn.dropFirst(isbn.count - 1))
             )
         }
     }
@@ -217,12 +211,10 @@ private extension String {
     
     func cleanedISBN() -> String {
         var isbn = self.filter(\.isISBNSave)
-        
         if isbn.count == 10 {
             isbn = String("978\(isbn)".dropLast())
             isbn = "\(isbn)\((10 - (isbn.calculateISBNChecksum() % 10) % 10))"
         }
-        
         return isbn
     }
     

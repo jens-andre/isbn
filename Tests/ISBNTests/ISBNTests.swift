@@ -10,7 +10,7 @@ final class ISBNTests: XCTestCase {
     }
     
     func testHypenation() throws {
-        XCTAssertEqual(ISBN.hyphenated(9781408855898), "978-1-4088-5589-8")
+        XCTAssertEqual(ISBN.hyphenated(9781781100769), "978-1-78110-076-9")
     }
     
     func testElements() throws {
@@ -19,11 +19,11 @@ final class ISBNTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual(isbn.prefix, 978)
-        XCTAssertEqual(isbn.group, 1)
-        XCTAssertEqual(isbn.registrant, 4088)
-        XCTAssertEqual(isbn.publication, 5589)
-        XCTAssertEqual(isbn.checkDigit, 8)
+        XCTAssertEqual(isbn.prefix, "978")
+        XCTAssertEqual(isbn.group, "1")
+        XCTAssertEqual(isbn.registrant, "4088")
+        XCTAssertEqual(isbn.publication, "5589")
+        XCTAssertEqual(isbn.checkDigit, "8")
     }
     
     func testISBN10With10CheckDigit() throws {
