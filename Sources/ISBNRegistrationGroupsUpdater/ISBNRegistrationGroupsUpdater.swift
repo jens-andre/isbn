@@ -36,9 +36,9 @@ struct ISBNRegistrationGroupsUpdater {
                 }
                 let components = range.components(separatedBy: "-")
                 guard let lowerBoundString = components.first?.prefix(length),
-                   let lowerBound = Int(lowerBoundString),
-                   let upperBoundString = components.last?.prefix(length),
-                   let upperBound = Int(upperBoundString) else {
+                      let lowerBound = Int(lowerBoundString),
+                      let upperBoundString = components.last?.prefix(length),
+                      let upperBound = Int(upperBoundString) else {
                     return nil
                 }
                 

@@ -23,14 +23,9 @@ Create a ISBN with a given string representation; returns `nil` if the ISBN is n
 ### Instance Properties
 
 ```swift
-let checkDigit: Int
+let elements: Elements
 ```
-The check digit element of the ISBN
-
-```swift
-let group: Int
-```
-The group number element of the ISBN
+The prefix, group, registrant, publication and check digit elements of the ISBN
 
 ```swift
 let groupName: String
@@ -47,22 +42,17 @@ let isbnString: String
 ```
 The string representation of the ISBN
 
-```swift
-let prefix: Int
-```
-The prefix element of the ISBN; either 978 or 979
-
-```swift
-let publication: Int
-```
-The publication number element of the ISBN
-
-```swift
-let registrant: Int
-```
-The registrant number element of the ISBN
-
 ### Type Methods
+
+```swift
+static func hyphenated(String) -> String
+```
+Returns a string representation of a ISBN with hyphens
+
+```swift
+static func hyphenated(Int) -> String
+```
+Returns a string representation of a ISBN with hyphens from a given GTIN representation
 
 ```swift
 static func isValid(Int) -> Bool
@@ -87,7 +77,7 @@ Conforms to
 
 MIT License.
 
-Copyright (c) 2019 jens-andre
+Copyright (c) 2022 jens-andre
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

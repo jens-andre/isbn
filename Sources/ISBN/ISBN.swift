@@ -7,23 +7,11 @@ public struct ISBN {
     /// The registration group name of the ISBN
     public let groupName: String
     
-    /// The string representation of the ISBN
+    /// The elements of the ISBN
+    public let elements: Elements
+    
+    /// The string representation with hyphens of the ISBN
     public let isbnString: String
-    
-    /// The prefix element of the ISBN; either 978 or 979
-    public let prefix: String
-    
-    /// The group number element of the ISBN
-    public let group: String
-    
-    /// The registrant number element of the ISBN
-    public let registrant: String
-    
-    /// The publication number element of the ISBN
-    public let publication: String
-    
-    /// The check digit element of the ISBN
-    public let checkDigit: String
     
     /// The Global Trade Item Number
     public let gtin: Int
@@ -32,22 +20,17 @@ public struct ISBN {
     ///
     /// Returns `nil` if the ISBN is not valid
     public init?(_ isbn: String) {
-        guard Self.isValid(isbn) else { return nil }
-        
+        guard Self.isValid(isbn) else {
+            return nil
+        }
         let isbn = isbn.cleanedISBN()
-        
         guard let registrationGroup = Self.registrationGroups.group(for: isbn),
               let elements = registrationGroup.elements(for: isbn) else {
             return nil
         }
-        
         groupName = registrationGroup.name
+        self.elements = elements
         isbnString = elements.joined()
-        prefix = elements.prefix
-        group = elements.group
-        registrant = elements.registrant
-        publication = elements.publication
-        checkDigit = elements.checkDigit
         gtin = isbn.toInt()
     }
     
@@ -63,13 +46,11 @@ extension ISBN {
     /// Validates a given string representation of a ISBN
     public static func isValid(_ isbn: String) -> Bool {
         let isbn = isbn.filter(\.isISBNSave)
-        
         if isbn.count == 13 {
             return isbn.calculateISBNChecksum() % 10 == 0
         } else if isbn.count == 10 {
             return isbn.calculateISBN10Checksum() % 11 == 0
         }
-        
         return false
     }
     
@@ -80,15 +61,14 @@ extension ISBN {
     
     /// Returns a string representation of a ISBN with hyphens
     public static func hyphenated(_ isbn: String) -> String? {
-        guard isValid(isbn) else { return nil }
-        
+        guard isValid(isbn) else {
+            return nil
+        }
         let isbn = isbn.cleanedISBN()
-        
         guard let registrationGroup = registrationGroups.group(for: isbn),
               let elements = registrationGroup.elements(for: isbn) else {
             return nil
         }
-        
         return elements.joined()
     }
     
@@ -102,20 +82,17 @@ extension ISBN: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let isbnString: String
-        
         if let gtin = try? container.decode(Int.self) {
             isbnString = String(gtin)
         } else {
             isbnString = try container.decode(String.self)
         }
-        
         guard let isbn = Self(isbnString) else {
             throw DecodingError.dataCorruptedError(
                 in: container,
                 debugDescription: "Invalid ISBN '\(isbnString)'"
             )
         }
-
         self = isbn
     }
 
@@ -136,14 +113,20 @@ extension ISBN: Equatable {
 }
 
 extension ISBN {
-    struct Elements {
-        let prefix: String
-        let group: String
-        let registrant: String
-        let publication: String
-        let checkDigit: String
+    public struct Elements {
+        /// The prefix element of the ISBN; either 978 or 979
+        public let prefix: Int
+        /// The group number element of the ISBN
+        public let group: Int
+        /// The registrant number element of the ISBN as a string because it may have a leading zero
+        public let registrant: String
+        /// The publication number element of the ISBN as a string because it may have a leading zero
+        public let publication: String
+        /// The check digit element of the ISBN
+        public let checkDigit: Int
         
-        func joined() -> String {
+        /// Returns a string by concatenating the elements of the ISBN with hyphens
+        public func joined() -> String {
             let mirror = Mirror(reflecting: self)
             return mirror.children.map({ "\($0.value)" })
                 .joined(separator: "-")
@@ -169,14 +152,16 @@ extension ISBN {
                 }
                 return rule.range.contains(registrant)
             }
-            
-            guard let registrantLength = rule?.length else { return nil }
+            guard let registrantLength = rule?.length,
+                  let checkDigit = Int(isbn.dropFirst(isbn.count - 1)) else {
+                return nil
+            }
             return .init(
-                prefix: String(prefix),
-                group: String(group),
+                prefix: prefix,
+                group: group,
                 registrant: String(digits.dropLast(digits.count - registrantLength)),
                 publication: String(digits.dropLast().dropFirst(registrantLength)),
-                checkDigit: String(isbn.dropFirst(isbn.count - 1))
+                checkDigit: checkDigit
             )
         }
     }
@@ -185,7 +170,9 @@ extension ISBN {
 private extension Character {
     var isISBNSave: Bool {
         let isbnSaveCharacters = CharacterSet(charactersIn: "0123456789X")
-        return self.unicodeScalars.allSatisfy { isbnSaveCharacters.contains($0) }
+        return self.unicodeScalars.allSatisfy {
+            isbnSaveCharacters.contains($0)
+        }
     }
     
     var isbnValue: Int? {
@@ -225,6 +212,6 @@ private extension String {
 
 private extension Array where Element == ISBN.RegistrationGroup {
     func group(for isbn: String) -> ISBN.RegistrationGroup? {
-        first { isbn.hasPrefix("\($0.prefix)\($0.group)") }
+        first(where: { isbn.hasPrefix("\($0.prefix)\($0.group)") })
     }
 }
