@@ -1,5 +1,5 @@
 // International ISBN Agency
-// Tue, 15 Mar 2022 10:27:57 GMT
+// Fri, 15 Jul 2022 18:05:23 BST
 
 extension ISBN {
     static let registrationGroups: [RegistrationGroup] = [
@@ -415,9 +415,9 @@ extension ISBN {
             name: "Iran",
             rules: [
                 .init(range: 0...10, length: 2),
-                .init(range: 200...324, length: 3),
-                .init(range: 5650...7999, length: 4),
-                .init(range: 94000...99999, length: 5)
+                .init(range: 200...374, length: 3),
+                .init(range: 5200...7999, length: 4),
+                .init(range: 92500...99999, length: 5)
             ]
         ),
         .init(
@@ -484,7 +484,8 @@ extension ISBN {
             rules: [
                 .init(range: 0...9, length: 2),
                 .init(range: 500...549, length: 3),
-                .init(range: 7500...8499, length: 4)
+                .init(range: 7500...8499, length: 4),
+                .init(range: 95000...99999, length: 5)
             ]
         ),
         .init(
@@ -1180,7 +1181,8 @@ extension ISBN {
             rules: [
                 .init(range: 0...199, length: 3),
                 .init(range: 2000...2999, length: 4),
-                .init(range: 30000...79999, length: 5),
+                .init(range: 30000...78999, length: 5),
+                .init(range: 790...799, length: 3),
                 .init(range: 8000...8999, length: 4),
                 .init(range: 900...999, length: 3)
             ]
@@ -1341,6 +1343,15 @@ extension ISBN {
         ),
         .init(
             prefix: 978,
+            group: 9911,
+            name: "Montenegro",
+            rules: [
+                .init(range: 20...24, length: 2),
+                .init(range: 550...749, length: 3)
+            ]
+        ),
+        .init(
+            prefix: 978,
             group: 9912,
             name: "Tanzania",
             rules: [
@@ -1364,9 +1375,9 @@ extension ISBN {
             group: 9914,
             name: "Kenya",
             rules: [
-                .init(range: 40...44, length: 2),
+                .init(range: 40...49, length: 2),
                 .init(range: 700...749, length: 3),
-                .init(range: 9850...9999, length: 4)
+                .init(range: 9600...9999, length: 4)
             ]
         ),
         .init(
@@ -1386,7 +1397,7 @@ extension ISBN {
             rules: [
                 .init(range: 0...0, length: 1),
                 .init(range: 10...39, length: 2),
-                .init(range: 4...4, length: 1),
+                .init(range: 4...5, length: 1),
                 .init(range: 600...749, length: 3),
                 .init(range: 9500...9999, length: 4)
             ]
@@ -1428,9 +1439,9 @@ extension ISBN {
             group: 9920,
             name: "Morocco",
             rules: [
-                .init(range: 30...39, length: 2),
-                .init(range: 550...799, length: 3),
-                .init(range: 9000...9999, length: 4)
+                .init(range: 30...41, length: 2),
+                .init(range: 500...799, length: 3),
+                .init(range: 8750...9999, length: 4)
             ]
         ),
         .init(
@@ -2985,7 +2996,9 @@ extension ISBN {
             group: 99976,
             name: "Srpska, Republic of",
             rules: [
-                .init(range: 0...1, length: 1),
+                .init(range: 0...0, length: 1),
+                .init(range: 10...15, length: 2),
+                .init(range: 160...199, length: 3),
                 .init(range: 20...59, length: 2),
                 .init(range: 600...799, length: 3),
                 .init(range: 85...89, length: 2),
@@ -3102,6 +3115,26 @@ extension ISBN {
             ]
         ),
         .init(
+            prefix: 978,
+            group: 99989,
+            name: "Paraguay",
+            rules: [
+                .init(range: 0...0, length: 1),
+                .init(range: 50...64, length: 2),
+                .init(range: 900...999, length: 3)
+            ]
+        ),
+        .init(
+            prefix: 978,
+            group: 99990,
+            name: "Ethiopia",
+            rules: [
+                .init(range: 0...0, length: 1),
+                .init(range: 50...54, length: 2),
+                .init(range: 975...999, length: 3)
+            ]
+        ),
+        .init(
             prefix: 979,
             group: 10,
             name: "France",
@@ -3140,10 +3173,12 @@ extension ISBN {
             group: 8,
             name: "United States",
             rules: [
-                .init(range: 200...219, length: 3),
+                .init(range: 200...229, length: 3),
+                .init(range: 3500...3999, length: 4),
                 .init(range: 4000...8499, length: 4),
+                .init(range: 8500...8849, length: 4),
                 .init(range: 88500...89999, length: 5),
-                .init(range: 9850000...9869999, length: 7)
+                .init(range: 9850000...9899999, length: 7)
             ]
         )
     ]
