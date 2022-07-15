@@ -135,7 +135,7 @@ extension ISBN {
     
     struct RegistrationGroup {
         struct Rule {
-            let range: Range<Int>
+            let range: ClosedRange<Int>
             let length: Int
         }
         

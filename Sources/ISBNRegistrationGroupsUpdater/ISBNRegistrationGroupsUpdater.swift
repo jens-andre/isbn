@@ -42,7 +42,7 @@ struct ISBNRegistrationGroupsUpdater {
                     return nil
                 }
                 
-                return ".init(range: \(lowerBound)..<\(upperBound), length: \(length))"
+                return ".init(range: \(lowerBound)...\(upperBound), length: \(length))"
             }
             guard !rules.isEmpty else {
                 return nil
