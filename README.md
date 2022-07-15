@@ -45,12 +45,12 @@ The string representation of the ISBN
 ### Type Methods
 
 ```swift
-static func hyphenated(String) -> String
+static func hyphenated(String) -> String?
 ```
 Returns a string representation of a ISBN with hyphens
 
 ```swift
-static func hyphenated(Int) -> String
+static func hyphenated(Int) -> String?
 ```
 Returns a string representation of a ISBN with hyphens from a given GTIN representation
 
