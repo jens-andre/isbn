@@ -1,5 +1,5 @@
 // International ISBN Agency
-// Fri, 15 Jul 2022 18:05:23 BST
+// Thu, 10 Nov 2022 06:19:16 GMT
 
 extension ISBN {
     static let registrationGroups: [RegistrationGroup] = [
@@ -275,7 +275,9 @@ extension ISBN {
             name: "Mexico",
             rules: [
                 .init(range: 0...39, length: 2),
-                .init(range: 400...749, length: 3),
+                .init(range: 400...592, length: 3),
+                .init(range: 59300...59999, length: 5),
+                .init(range: 600...749, length: 3),
                 .init(range: 7500...9499, length: 4),
                 .init(range: 95000...99999, length: 5)
             ]
@@ -426,8 +428,8 @@ extension ISBN {
             name: "Indonesia",
             rules: [
                 .init(range: 0...9, length: 2),
-                .init(range: 200...499, length: 3),
-                .init(range: 5250...7999, length: 4),
+                .init(range: 170...499, length: 3),
+                .init(range: 5250...8799, length: 4),
                 .init(range: 88000...99999, length: 5)
             ]
         ),
@@ -438,7 +440,7 @@ extension ISBN {
             rules: [
                 .init(range: 0...4, length: 2),
                 .init(range: 200...249, length: 3),
-                .init(range: 5000...6349, length: 4),
+                .init(range: 5000...6449, length: 4),
                 .init(range: 94500...99999, length: 5)
             ]
         ),
@@ -448,10 +450,10 @@ extension ISBN {
             name: "Turkey",
             rules: [
                 .init(range: 0...0, length: 2),
-                .init(range: 400...442, length: 3),
+                .init(range: 365...442, length: 3),
                 .init(range: 44300...44499, length: 5),
                 .init(range: 445...449, length: 3),
-                .init(range: 7000...7793, length: 4),
+                .init(range: 6350...7793, length: 4),
                 .init(range: 77940...77949, length: 5),
                 .init(range: 7795...8499, length: 4)
             ]
@@ -517,7 +519,7 @@ extension ISBN {
                 .init(range: 250...299, length: 3),
                 .init(range: 300...302, length: 3),
                 .init(range: 5000...5129, length: 4),
-                .init(range: 5350...5999, length: 4),
+                .init(range: 5350...6149, length: 4),
                 .init(range: 80000...81824, length: 5),
                 .init(range: 84500...89999, length: 5),
                 .init(range: 900000...902449, length: 6),
@@ -754,8 +756,8 @@ extension ISBN {
                 .init(range: 0...9, length: 2),
                 .init(range: 100...499, length: 3),
                 .init(range: 5000...7999, length: 4),
-                .init(range: 80000...94999, length: 5),
-                .init(range: 950000...999999, length: 6)
+                .init(range: 80000...95999, length: 5),
+                .init(range: 960000...999999, length: 6)
             ]
         ),
         .init(
@@ -941,7 +943,7 @@ extension ISBN {
                 .init(range: 0...19, length: 2),
                 .init(range: 200...599, length: 3),
                 .init(range: 6000...8999, length: 4),
-                .init(range: 90000...95999, length: 5)
+                .init(range: 90000...97999, length: 5)
             ]
         ),
         .init(
@@ -1169,7 +1171,9 @@ extension ISBN {
                 .init(range: 200...499, length: 3),
                 .init(range: 5000...6999, length: 4),
                 .init(range: 700...849, length: 3),
-                .init(range: 85000...89999, length: 5),
+                .init(range: 85000...89299, length: 5),
+                .init(range: 893...894, length: 3),
+                .init(range: 8950...8999, length: 4),
                 .init(range: 90...98, length: 2),
                 .init(range: 990...999, length: 3)
             ]
@@ -1223,7 +1227,8 @@ extension ISBN {
                 .init(range: 200...299, length: 3),
                 .init(range: 3000...3099, length: 4),
                 .init(range: 310...399, length: 3),
-                .init(range: 4000...9999, length: 4)
+                .init(range: 4000...9499, length: 4),
+                .init(range: 99...99, length: 2)
             ]
         ),
         .init(
@@ -1305,7 +1310,9 @@ extension ISBN {
                 .init(range: 4400...4499, length: 4),
                 .init(range: 45000...48999, length: 5),
                 .init(range: 4900...4999, length: 4),
-                .init(range: 500...829, length: 3),
+                .init(range: 500...824, length: 3),
+                .init(range: 8250...8279, length: 4),
+                .init(range: 82800...82999, length: 5),
                 .init(range: 8300...8499, length: 4),
                 .init(range: 85...88, length: 2),
                 .init(range: 8900...9499, length: 4),
@@ -1429,7 +1436,8 @@ extension ISBN {
             group: 9919,
             name: "Mongolia",
             rules: [
-                .init(range: 20...27, length: 2),
+                .init(range: 0...0, length: 1),
+                .init(range: 20...29, length: 2),
                 .init(range: 500...599, length: 3),
                 .init(range: 9500...9999, length: 4)
             ]
@@ -1554,8 +1562,8 @@ extension ISBN {
             group: 9931,
             name: "Algeria",
             rules: [
-                .init(range: 0...25, length: 2),
-                .init(range: 260...899, length: 3),
+                .init(range: 0...23, length: 2),
+                .init(range: 240...899, length: 3),
                 .init(range: 9000...9999, length: 4)
             ]
         ),
@@ -1631,7 +1639,9 @@ extension ISBN {
             rules: [
                 .init(range: 0...79, length: 2),
                 .init(range: 800...949, length: 3),
-                .init(range: 9500...9999, length: 4)
+                .init(range: 9500...9749, length: 4),
+                .init(range: 975...990, length: 3),
+                .init(range: 9910...9999, length: 4)
             ]
         ),
         .init(
@@ -2722,7 +2732,8 @@ extension ISBN {
                 .init(range: 0...1, length: 1),
                 .init(range: 20...79, length: 2),
                 .init(range: 8...8, length: 1),
-                .init(range: 900...999, length: 3)
+                .init(range: 900...989, length: 3),
+                .init(range: 99...99, length: 2)
             ]
         ),
         .init(
@@ -3052,8 +3063,8 @@ extension ISBN {
             name: "Macau",
             rules: [
                 .init(range: 0...1, length: 1),
-                .init(range: 30...74, length: 2),
-                .init(range: 800...999, length: 3)
+                .init(range: 27...74, length: 2),
+                .init(range: 750...999, length: 3)
             ]
         ),
         .init(
@@ -3082,8 +3093,8 @@ extension ISBN {
             name: "Tajikistan",
             rules: [
                 .init(range: 0...1, length: 1),
-                .init(range: 50...79, length: 2),
-                .init(range: 900...999, length: 3)
+                .init(range: 35...79, length: 2),
+                .init(range: 850...999, length: 3)
             ]
         ),
         .init(
