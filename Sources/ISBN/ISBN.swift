@@ -102,8 +102,10 @@ extension ISBN: Codable {
     }
 }
 
-extension ISBN: CustomStringConvertible {
-    public var description: String { isbnString }
+extension ISBN: LosslessStringConvertible {
+    public var description: String {
+        isbnString
+    }
 }
 
 extension ISBN: Equatable {

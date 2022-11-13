@@ -68,7 +68,7 @@ Validates a given string representation of a ISBN
 
 Conforms to
 
-- Swift.CustomStringConvertible
+- Swift.LosslessStringConvertible
 - Swift.Decodable
 - Swift.Encodable
 - Swift.Equatable
